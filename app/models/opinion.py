@@ -1,4 +1,4 @@
-from app.models.utils import extract_element
+from app.utils import extract_element
 
 class Opinion:
     
@@ -45,11 +45,11 @@ class Opinion:
         return self
     
     def __str__(self):
-        return f'opinion_id: {self.opinion_id}\n' +  "\n".join(f"{key} : {str(getattr(self, key))}" for key in self.selectors.keys())
-    
-    def __repr__(self):
-        return f'Opinion(opinion_id: {self.opinion_id}' + ", ".join(f'{key}= {str(getattr(self, key))}' for key in self.selectors.keys())
+        return f"opinion_id: {self.opinion_id}<br>" + "<br>".join(f"{key}: {str(getattr(self, key))}" for key in self.selectors.keys())
 
-    def __dict__(self):
-        return {key: getattr(self, key) for key in self.selectors.keys()}
+    def __repr__(self):
+        return f"Opinion(opinion_id={self.opinion_id}" + ", ".join(f"{key}={str(getattr(self, key))}" for key in self.selectors.keys()) + ")"
+
+    def to_dict(self):
+        return {"opinion_id": self.opinion_id} | {key: getattr(self, key) for key in self.selectors.keys()}
         
