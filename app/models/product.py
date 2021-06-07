@@ -7,7 +7,7 @@ class Product:
     def __init__(self, product_id, product_name = None, opinions = []):
         self.product_id = product_id
         self.product_name = product_name
-        self.opinions = opinions
+        self.opinions = opinions.copy()
     
     def extract_product(self):
         next_page = "https://www.ceneo.pl/{}#tab=reviews".format(self.product_id)
